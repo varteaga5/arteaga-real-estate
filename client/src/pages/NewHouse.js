@@ -1,22 +1,22 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
 function NewHouse({ user }) {
   const [address, setAdress] = useState("enter address here");
   // const [minutesToComplete, setMinutesToComplete] = useState("30");
-  const [description, setDescription] = useState(`My ideal house has.
+  const [description, setDescription] =
+    useState(`I like this house becuase it has...
   
-## Bedrooms
+3 bedrooms...
 
 - spacious and natural light
 - carpet through out
 
-## back yard
+big back yard
 
-**Entertainers paradise** large and inviting
   `);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -55,7 +55,9 @@ function NewHouse({ user }) {
               type="text"
               id="address"
               value={address}
+              placeholder="enter address here"
               onChange={(e) => setAdress(e.target.value)}
+              autoFocus
             />
           </FormField>
 

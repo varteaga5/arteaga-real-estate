@@ -6,6 +6,16 @@ import { Box, Button } from "../styles";
 
 function HouseList() {
   const [houses, setHouses] = useState([]);
+  function handleDelete(deleteHouse) {
+    fetch("/houses/" + deleteHouse.target.id, {
+      method: "DELETE",
+    });
+    const updatedList = houses.filter(
+      (house) => house.id !== deleteHouse.target.id
+    );
+    setHouses(updatedList);
+    // setHouses(houses.filter((house) => house !== deleteHouse));
+  }
 
   useEffect(() => {
     fetch("/houses")
@@ -19,13 +29,12 @@ function HouseList() {
         houses.map((house) => (
           <House key={house.id}>
             <Box>
-              <h2>{house.title}</h2>
-              <p>
-                <em>Time to Complete: {house.minutesToComplete} minutes</em>
-                &nbsp;·&nbsp;
-                <cite>By {house.user.username}</cite>
-              </p>
-              <ReactMarkdown>{house.instructions}</ReactMarkdown>
+              <h2>{house.address}</h2>
+              <ReactMarkdown>{house.description}</ReactMarkdown>
+
+              <button id={house.id} onClick={handleDelete}>
+                Remove
+              </button>
             </Box>
           </House>
         ))

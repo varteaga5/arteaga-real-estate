@@ -16,30 +16,30 @@ function NavBar({ user, setUser }) {
     <Wrapper>
       <Logo>
         <Link to="/">Arteaga Real Estate</Link>
+        <Nav>
+          <Button as={Link} to="/new">
+            New House
+          </Button>
+          <Button variant="outline" onClick={handleLogoutClick}>
+            Logout
+          </Button>
+        </Nav>
       </Logo>
-      <Nav>
-        <Button as={Link} to="/new">
-          New House
-        </Button>
-        <Button variant="outline" onClick={handleLogoutClick}>
-          Logout
-        </Button>
-      </Nav>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.header`
-  display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px;
 `;
 
 const Logo = styled.h1`
-  font-family: "Permanent Marker", cursive;
+  display: flex;
+  font-family: "New Yorker Type";
   font-size: 3rem;
-  color: deeppink;
+  color: blue;
   margin: 0;
   line-height: 1;
 
