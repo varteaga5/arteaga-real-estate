@@ -1,3 +1,4 @@
+// this file is required for the dark theme
 import { createGlobalStyle } from "styled-components";
 export const GlobalStyles = createGlobalStyle`
   body {

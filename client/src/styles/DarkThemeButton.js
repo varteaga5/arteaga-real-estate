@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 const COLORS = {
   primary: {
-    "--main": "goldenrod",
+    "--main": "black",
     "--accent": "white",
   },
   secondary: {
-    "--main": "goldenrod",
-    "--accent": "goldenrod",
+    "--main": "lavenderblush",
+    "--accent": "black",
   },
 };
 
-function Button({ variant = "fill", color = "primary", ...props }) {
+function DarkThemeButton({ variant = "fill", color = "primary", ...props }) {
   let Component;
   if (variant === "fill") {
     Component = FillButton;
@@ -50,4 +50,4 @@ const OutlineButton = styled(ButtonBase)`
   }
 `;
 
-export default Button;
+export default DarkThemeButton;

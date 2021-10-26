@@ -5,15 +5,15 @@ import styled from "styled-components";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
 function NewHouse({ user }) {
-  const [address, setAdress] = useState("enter address here");
+  const [address, setAdress] = useState("");
   // const [minutesToComplete, setMinutesToComplete] = useState("30");
   const [description, setDescription] =
     useState(`I like this house becuase it has...
   
 3 bedrooms...
 
-- spacious and natural light
-- carpet through out
+spacious and natural light
+carpet through out
 
 big back yard
 
@@ -60,7 +60,6 @@ big back yard
               autoFocus
             />
           </FormField>
-
           <FormField>
             <Label htmlFor="description">Description</Label>
             <Textarea

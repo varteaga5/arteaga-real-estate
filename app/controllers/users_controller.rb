@@ -23,6 +23,6 @@ skip_before_action :authorize, only: :create
 
     # use of strong params prevents the user from unwanted changes to attributes
     def user_params
-        params.permit(:username, :password, :password_confirmation, :image_url, :wants)
+        params.permit(:username, :password, :password_confirmation, :wants)
     end
 end

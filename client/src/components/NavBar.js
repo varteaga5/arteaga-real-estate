@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles";
 
-function NavBar({ user, setUser }) {
-  function handleLogoutClick() {
+function NavBar({ setUser }) {
+  function handleLogout() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setUser(null);
@@ -16,30 +16,33 @@ function NavBar({ user, setUser }) {
     <Wrapper>
       <Logo>
         <Link to="/">Arteaga Real Estate</Link>
-        <Nav>
-          <Button as={Link} to="/new">
-            New House
-          </Button>
-          <Button variant="outline" onClick={handleLogoutClick}>
-            Logout
-          </Button>
-        </Nav>
       </Logo>
+      <Nav>
+        <Button variant="outline" as={Link} to="/new">
+          Add New House
+        </Button>
+        <Button variant="outline" as={Link} to="/about">
+          About
+        </Button>
+        <Button variant="outline" onClick={handleLogout}>
+          Logout
+        </Button>
+      </Nav>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.header`
-  justify-content: center;
+  display: flex;
   align-items: center;
   padding: 8px;
 `;
 
 const Logo = styled.h1`
+  font-family: cursive;
   display: flex;
-  font-family: "New Yorker Type";
   font-size: 3rem;
-  color: blue;
+  color: goldenrod;
   margin: 0;
   line-height: 1;
 

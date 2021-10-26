@@ -9,15 +9,14 @@ function Login({ onLogin }) {
 
   return (
     <Wrapper>
-      <Logo>Arteaga</Logo>
+      <Logo>Arteaga Real Estate</Logo>
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />
           <Divider />
           <p>
-            Don't have an account? &nbsp;
-            <Button color="secondary" onClick={() => setShowLogin(false)}>
-              Sign Up
+            <Button color="primary" onClick={() => setShowLogin(false)}>
+              Create New Account
             </Button>
           </p>
         </>
@@ -26,9 +25,8 @@ function Login({ onLogin }) {
           <SignUpForm onLogin={onLogin} />
           <Divider />
           <p>
-            Already have an account? &nbsp;
-            <Button color="secondary" onClick={() => setShowLogin(true)}>
-              Log In
+            <Button color="primary" onClick={() => setShowLogin(true)}>
+              Back to Log In
             </Button>
           </p>
         </>
@@ -38,9 +36,9 @@ function Login({ onLogin }) {
 }
 
 const Logo = styled.h1`
-  font-family: "Permanent Marker", cursive;
   font-size: 3rem;
-  color: deeppink;
+  font-family: cursive;
+  color: goldenrod;
   margin: 8px 0 16px;
 `;
 

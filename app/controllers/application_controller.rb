@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
     # assigns the user to the instance variable current_user
     @current_user = User.find_by(id: session[:user_id])
     # unless the session includes :user_id, return an error
-    render json: { errors: ["not this error"] }, status: :unauthorized unless @current_user
+    render json: { errors: ["not authorized"] }, status: :unauthorized unless @current_user
   end
 
   def render_unprocessable_entity_response

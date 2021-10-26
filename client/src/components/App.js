@@ -4,13 +4,14 @@ import NavBar from "./NavBar";
 import Login from "../pages/Login";
 import HouseList from "../pages/HouseList";
 import NewHouse from "../pages/NewHouse";
-
+import About from "../pages/About";
+import DarkThemeButton from "../styles/DarkThemeButton.js";
 import { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { lightTheme, darkTheme, GlobalStyles } from "../theme";
 
 function App() {
   const [user, setUser] = useState(null);
-
   const [theme, setTheme] = useState("light");
   const isDarkTheme = theme === "dark";
   const toggleTheme = () => setTheme(isDarkTheme ? "light" : "dark");
@@ -27,34 +28,44 @@ function App() {
   if (!user) return <Login onLogin={setUser} />;
 
   return (
-    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
-      <>
-        <GlobalStyles />
-        <NavBar user={user} setUser={setUser} />
-        <button onClick={toggleTheme}>
-          {isDarkTheme ? (
-            <span aria-label="Light mode" role="img">
-              🌞
-            </span>
-          ) : (
-            <span aria-label="Dark mode" role="img">
-              🌜
-            </span>
-          )}
-        </button>
-        <main>
-          <Switch>
-            <Route path="/new">
-              <NewHouse user={user} />
-            </Route>
-            <Route path="/">
-              <HouseList />
-            </Route>
-          </Switch>
-        </main>
-      </>
-    </ThemeProvider>
+    <Wrapper>
+      <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+        <>
+          <GlobalStyles />
+          <NavBar user={user} setUser={setUser} />
+          <DarkThemeButton onClick={toggleTheme}>
+            {isDarkTheme ? (
+              <span aria-label="Light mode" role="img">
+                🌞
+              </span>
+            ) : (
+              <span aria-label="Dark mode" role="img">
+                🌜
+              </span>
+            )}
+          </DarkThemeButton>
+          <main>
+            <Switch>
+              <Route exact path="/new">
+                <NewHouse user={user} />
+              </Route>
+              <Route exact path="/">
+                <HouseList />
+              </Route>
+              <Route exact path="/About">
+                <About />
+              </Route>
+            </Switch>
+          </main>
+        </>
+      </ThemeProvider>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.section`
+  max-width: 800px;
+  margin: 40px auto;
+`;
 
 export default App;

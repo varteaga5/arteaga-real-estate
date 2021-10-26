@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
         else
             # if the user's username and password are not authenticated: 
             # return a JSON response with an error message, and a status of 401(unauthorized)
-            render json: { errors: ["Invalid username or password"]}. status: :unauthorized
+            render json: { errors: ["Invalid username or password"]}, status: :unauthorized
         end
     end
     # logout feature

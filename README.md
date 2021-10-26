@@ -9,9 +9,7 @@ x
 x
 x
 
-in recipe table, title -> address, instructions -> description, recipe -> house bio -> wants
-
-need to install:
-"react-markdown": "^6.0.2",
-"react-router-dom": "^5.2.0",
-"styled-components": "^5.3.0",
+fix remove button so that it auto updates, use session destroy as template,
+add about page
+namespace api
+each user sharing same list, look at where the fetch/post is being sent, and see if any id associated

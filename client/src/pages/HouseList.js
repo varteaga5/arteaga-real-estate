@@ -6,6 +6,7 @@ import { Box, Button } from "../styles";
 
 function HouseList() {
   const [houses, setHouses] = useState([]);
+
   function handleDelete(deleteHouse) {
     fetch("/houses/" + deleteHouse.target.id, {
       method: "DELETE",
@@ -14,7 +15,6 @@ function HouseList() {
       (house) => house.id !== deleteHouse.target.id
     );
     setHouses(updatedList);
-    // setHouses(houses.filter((house) => house !== deleteHouse));
   }
 
   useEffect(() => {
