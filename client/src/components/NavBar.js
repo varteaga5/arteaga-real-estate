@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles";
+import DarkThemeButton from "../styles/DarkThemeButton.js";
 
-function NavBar({ setUser }) {
+function NavBar({ setUser, toggleTheme, setTheme, isDarkTheme }) {
   function handleLogout() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
@@ -27,6 +28,17 @@ function NavBar({ setUser }) {
         <Button variant="outline" onClick={handleLogout}>
           Logout
         </Button>
+        <DarkThemeButton onClick={toggleTheme}>
+          {isDarkTheme ? (
+            <span aria-label="Light mode" role="img">
+              🌞
+            </span>
+          ) : (
+            <span aria-label="Dark mode" role="img">
+              🌜
+            </span>
+          )}
+        </DarkThemeButton>
       </Nav>
     </Wrapper>
   );

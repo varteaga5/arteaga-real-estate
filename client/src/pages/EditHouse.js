@@ -1,31 +1,25 @@
 import { useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import styled from "styled-components";
-// import ReactMarkdown from "react-markdown";
+import { Link } from "react-router-dom";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
+// when page loads, populate with existing info
+//
 
-function NewHouse({ user }) {
-  const [address, setAdress] = useState("");
-  const [description, setDescription] =
-    useState(`I like this house becuase it has...
-  
-3 bedrooms...
-
-spacious and natural light
-carpet through out
-
-big back yard
-
-  `);
+function EditHouse() {
+  const location = useLocation();
+  const { house } = location.state;
+  const [description, setDescription] = useState(house.description);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  const [address, setAdress] = useState(house.address);
 
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/houses", {
-      method: "POST",
+    fetch("/houses/" + house.id, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -46,7 +40,7 @@ big back yard
   return (
     <Wrapper>
       <WrapperChild>
-        <h2>Add house</h2>
+        <h2>Edit house</h2>
         <form onSubmit={handleSubmit}>
           <FormField>
             <Label htmlFor="adress">Adress</Label>
@@ -54,7 +48,6 @@ big back yard
               type="text"
               id="address"
               value={address}
-              placeholder="enter address here"
               onChange={(e) => setAdress(e.target.value)}
               autoFocus
             />
@@ -70,7 +63,10 @@ big back yard
           </FormField>
           <FormField>
             <Button color="primary" type="submit">
-              {isLoading ? "Loading..." : "Add house"}
+              {isLoading ? "Loading..." : "Update house"}
+            </Button>{" "}
+            <Button color="primary" type="button" as={Link} to="/">
+              Cancel
             </Button>
           </FormField>
           <FormField>
@@ -96,4 +92,4 @@ const WrapperChild = styled.div`
   flex: 1;
 `;
 
-export default NewHouse;
+export default EditHouse;

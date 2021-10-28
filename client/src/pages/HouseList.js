@@ -6,21 +6,28 @@ import { Box, Button } from "../styles";
 
 function HouseList() {
   const [houses, setHouses] = useState([]);
+  const [usersHouses, setUserHouses] = useState([]);
 
   function handleDelete(deleteHouse) {
     fetch("/houses/" + deleteHouse.target.id, {
       method: "DELETE",
-    });
-    const updatedList = houses.filter(
-      (house) => house.id !== deleteHouse.target.id
-    );
-    setHouses(updatedList);
-  }
-
-  useEffect(() => {
-    fetch("/houses")
+    })
       .then((r) => r.json())
       .then(setHouses);
+  }
+
+  // useEffect(() => {
+  //   fetch("/houses")
+  //     .then((r) => r.json())
+  //     .then(setHouses);
+  //   console.log("this is houses", houses);
+  // }, []);
+
+  useEffect(() => {
+    fetch("/me")
+      .then((r) => r.json())
+      .then(setUserHouses);
+    console.log("this is usershouses", usersHouses);
   }, []);
 
   return (
@@ -31,10 +38,19 @@ function HouseList() {
             <Box>
               <h2>{house.address}</h2>
               <ReactMarkdown>{house.description}</ReactMarkdown>
-
-              <button id={house.id} onClick={handleDelete}>
+              <Button>
+                <Link
+                  to={{
+                    pathname: "/Edit",
+                    state: { house: house },
+                  }}
+                >
+                  Edit
+                </Link>
+              </Button>{" "}
+              <Button id={house.id} onClick={handleDelete}>
                 Remove
-              </button>
+              </Button>
             </Box>
           </House>
         ))

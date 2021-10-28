@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import Login from "../pages/Login";
 import HouseList from "../pages/HouseList";
 import NewHouse from "../pages/NewHouse";
+import EditHouse from "../pages/EditHouse";
 import About from "../pages/About";
 import DarkThemeButton from "../styles/DarkThemeButton.js";
 import { ThemeProvider } from "styled-components";
@@ -32,8 +33,7 @@ function App() {
       <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
         <>
           <GlobalStyles />
-          <NavBar user={user} setUser={setUser} />
-          <DarkThemeButton onClick={toggleTheme}>
+          {/* <DarkThemeButton onClick={toggleTheme}>
             {isDarkTheme ? (
               <span aria-label="Light mode" role="img">
                 🌞
@@ -43,7 +43,8 @@ function App() {
                 🌜
               </span>
             )}
-          </DarkThemeButton>
+          </DarkThemeButton> */}
+          <NavBar user={user} setUser={setUser} />
           <main>
             <Switch>
               <Route exact path="/new">
@@ -54,6 +55,9 @@ function App() {
               </Route>
               <Route exact path="/About">
                 <About />
+              </Route>
+              <Route exact path="/Edit">
+                <EditHouse user={user} />
               </Route>
             </Switch>
           </main>
@@ -67,5 +71,11 @@ const Wrapper = styled.section`
   max-width: 800px;
   margin: 40px auto;
 `;
+// const DarkButton = styled.div`
+//   position: absolute;
+//   bottom: 94%;
+//   left: 90%;
+//   margin: 40px;
+// `;
 
 export default App;

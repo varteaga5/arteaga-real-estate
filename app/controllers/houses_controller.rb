@@ -13,11 +13,18 @@ class HousesController < ApplicationController
 
     def destroy
         house = House.find_by(id: params[:id])
+        house.destroy
+        houses = House.all
+        render json: houses
+    end
+    
+    def update
+        house = House.find_by(id: params[:id])
         if house
-            house.destroy
-            head :no_content
+            house.update(house_params)
+            render json: house
         else
-            render json: { error: "House not found" }, status: :not_found
+            render json: { error: "House not found" }, status: :not_found     
         end
     end
 

@@ -16,7 +16,9 @@ skip_before_action :authorize, only: :create
     # auto login feature
     def show
         # if the user is logged in (if their user_id is in the session hash)
-        render json: @current_user
+        # using include: :houses allows the associated houses to be sent to the front end
+        # render json: @current_user
+        render json: @current_user, include: :houses
     end
 
     private
