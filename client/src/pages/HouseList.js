@@ -5,35 +5,25 @@ import styled from "styled-components";
 import { Box, Button } from "../styles";
 
 function HouseList() {
-  const [houses, setHouses] = useState([]);
-  const [usersHouses, setUserHouses] = useState([]);
+  const [usersHouses, setUserHouses] = useState(null);
+  useEffect(() => {
+    fetch("/showhouses")
+      .then((r) => r.json())
+      .then((data) => setUserHouses(data));
+  }, []);
 
   function handleDelete(deleteHouse) {
-    fetch("/houses/" + deleteHouse.target.id, {
+    fetch("/showhouses/houses/" + deleteHouse.target.id, {
       method: "DELETE",
     })
       .then((r) => r.json())
-      .then(setHouses);
-  }
-
-  // useEffect(() => {
-  //   fetch("/houses")
-  //     .then((r) => r.json())
-  //     .then(setHouses);
-  //   console.log("this is houses", houses);
-  // }, []);
-
-  useEffect(() => {
-    fetch("/me")
-      .then((r) => r.json())
       .then(setUserHouses);
-    console.log("this is usershouses", usersHouses);
-  }, []);
+  }
 
   return (
     <Wrapper>
-      {houses.length > 0 ? (
-        houses.map((house) => (
+      {usersHouses && usersHouses.houses.length > 0 ? (
+        usersHouses.houses.map((house) => (
           <House key={house.id}>
             <Box>
               <h2>{house.address}</h2>

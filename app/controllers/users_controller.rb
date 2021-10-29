@@ -13,12 +13,33 @@ skip_before_action :authorize, only: :create
         render json: user, status: :created
     end
 
+    # creates house associated with a user
+    def create_house
+        house = @current_user.houses.create(house_params)
+        render json: house, include: 'houses'
+    end
+    
     # auto login feature
     def show
         # if the user is logged in (if their user_id is in the session hash)
         # using include: :houses allows the associated houses to be sent to the front end
-        # render json: @current_user
-        render json: @current_user, include: :houses
+        render json: @current_user, include: 'houses'
+    end
+    
+    def show_houses
+        render json: @current_user, include: 'houses'
+    end
+    
+    def delete_house
+        house = House.find_by(id: params[:id])
+        house.destroy
+        render json: @current_user, include: 'houses'
+    end
+    
+    def update_house
+        house = House.find_by(id: params[:id])
+        house.update(house_params)
+        render json: @current_user, include: 'houses'
     end
 
     private
@@ -27,4 +48,9 @@ skip_before_action :authorize, only: :create
     def user_params
         params.permit(:username, :password, :password_confirmation, :wants)
     end
+
+    def house_params
+        params.permit(:address, :description)
+    end
 end
+

@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-// import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
-function NewHouse({ user }) {
+function NewHouse() {
   const [address, setAdress] = useState("");
   const [description, setDescription] =
     useState(`I like this house becuase it has...
@@ -24,7 +23,7 @@ big back yard
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/houses", {
+    fetch("/createhouse", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,6 +35,7 @@ big back yard
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
+        // if response is ok, takes use back to houselist page
         history.push("/");
       } else {
         r.json().then((err) => setErrors(err.errors));

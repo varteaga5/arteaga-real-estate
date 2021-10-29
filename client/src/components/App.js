@@ -19,13 +19,14 @@ function App() {
 
   useEffect(() => {
     // auto-login
+    // .ok Boolean stating whether the response was successful (status in the range 200-299) or not
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
     });
   }, []);
-
+  // returns false and keeps the user logged in, or else would take user to login screen
   if (!user) return <Login onLogin={setUser} />;
 
   return (
@@ -33,22 +34,25 @@ function App() {
       <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
         <>
           <GlobalStyles />
-          {/* <DarkThemeButton onClick={toggleTheme}>
-            {isDarkTheme ? (
-              <span aria-label="Light mode" role="img">
-                🌞
-              </span>
-            ) : (
-              <span aria-label="Dark mode" role="img">
-                🌜
-              </span>
-            )}
-          </DarkThemeButton> */}
           <NavBar user={user} setUser={setUser} />
+          <DarkButton>
+            <DarkThemeButton onClick={toggleTheme}>
+              {isDarkTheme ? (
+                <span aria-label="Light mode" role="img">
+                  🌞
+                </span>
+              ) : (
+                <span aria-label="Dark mode" role="img">
+                  🌜
+                </span>
+              )}
+            </DarkThemeButton>{" "}
+          </DarkButton>
+          <h3>hello, {user.username} </h3>{" "}
           <main>
             <Switch>
               <Route exact path="/new">
-                <NewHouse user={user} />
+                <NewHouse />
               </Route>
               <Route exact path="/">
                 <HouseList />
@@ -57,7 +61,7 @@ function App() {
                 <About />
               </Route>
               <Route exact path="/Edit">
-                <EditHouse user={user} />
+                <EditHouse />
               </Route>
             </Switch>
           </main>
@@ -71,11 +75,6 @@ const Wrapper = styled.section`
   max-width: 800px;
   margin: 40px auto;
 `;
-// const DarkButton = styled.div`
-//   position: absolute;
-//   bottom: 94%;
-//   left: 90%;
-//   margin: 40px;
-// `;
+const DarkButton = styled.div``;
 
 export default App;

@@ -3,8 +3,6 @@ import { useHistory, useLocation } from "react-router";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
-// when page loads, populate with existing info
-//
 
 function EditHouse() {
   const location = useLocation();
@@ -18,7 +16,7 @@ function EditHouse() {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/houses/" + house.id, {
+    fetch("/showhouses/" + house.id, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -30,6 +28,7 @@ function EditHouse() {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
+        // if response is ok, takes use back to houselist page
         history.push("/");
       } else {
         r.json().then((err) => setErrors(err.errors));

@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
     # the before action will SKIP the authorize function on the create method
     skip_before_action :authorize, only: :create
+
     # log in feature
     def create
         #in the sessions controller, a 'session' is create by finding a user by its username 
