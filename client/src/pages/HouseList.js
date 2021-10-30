@@ -30,6 +30,7 @@ function HouseList() {
               <ReactMarkdown>{house.description}</ReactMarkdown>
               <Button>
                 <Link
+                  style={{ color: "white", textDecoration: "none" }}
                   to={{
                     pathname: "/Edit",
                     state: { house: house },

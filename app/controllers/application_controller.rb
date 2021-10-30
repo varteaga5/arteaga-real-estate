@@ -9,8 +9,9 @@ class ApplicationController < ActionController::API
   private
   # runs when the "before_action" is called
   def authorize
-    #finds the user by id that is in the session
+    # finds the user by id that is in the session
     # assigns the user to the instance variable current_user
+    # instance variable is best to use here because it will be available to the instance methods in the instances of the class
     @current_user = User.find_by(id: session[:user_id])
     # unless the session includes :user_id, return an error
     render json: { errors: ["not authorized"] }, status: :unauthorized unless @current_user
