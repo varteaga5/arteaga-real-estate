@@ -1,21 +1,14 @@
-phase four or project will include:
--logging in
--adding house to list of houses
--houses on this list are their favorite list
+Welcome to my Phase 4 Project!
 
-phase 5 will inlclude choosing a list of houses from a list or map, when user clicks on the house they can be taken to the house's page and add it to their list.
+To use the application users must login or signup with a unique username and password, once logged in they are taken to the home screen.
 
-x
-x
-x
+The home screen is a list of homes that the user has added, if they have not added any homes, they then can add them. At this point in the development of the application, the user must input the address and a brief description of why and what they like about the house.
 
-x fix remove button so that it auto updates, use session destroy as template,
-x add about page
+From the home screen they can edit the houses on their list by clicking the Edit button. When this is clicked, they are taken to another screen to make edits, the previous info is loaded and they can click cancel if they do not want to make changes. They can also delete a house from their list by clicking remove. There is a link an about page that gives more information about the site.
 
-namespace api
-each user sharing same list, look at where the fetch/post is being sent, and see if any id associated
+The user can also toggle between dark theme and light theme, because we know that browsing through houses for a long time can be straining on the eyes! Finally, when the user is done, they can logout.
 
-possibly pass state thru each add new house Link, state would have the user_id
-when adding a new house, it should go to the user's nested list of houses
+Thank you for viewing my project!
 
-goal: log user with houses showing as nested in json
+Link to video demo on YouTube:
+https://youtu.be/2_Hzcd47rEQ
