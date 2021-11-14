@@ -4,12 +4,14 @@ import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
 import { Button } from "../styles";
 
+// this component receives onLogin from App.js
 function Login({ onLogin }) {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
     <Wrapper>
       <Logo>Arteaga Real Estate</Logo>
+      {/* based starting state of true shows LoginForm component */}
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />

@@ -4,6 +4,7 @@ import LogoSrc from "../styles/assets/vince profile pic - Cropped 10mb - Copy.pn
 
 function About() {
   return (
+    // 'about' info wrapped in styled compenents e
     <Wrapper>
       <House>
         <Box>

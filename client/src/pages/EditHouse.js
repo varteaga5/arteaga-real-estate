@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
 function EditHouse() {
+  // UseLocation hook is required when passing state through Link component from HouseList.js
   const location = useLocation();
   const { house } = location.state;
   const [description, setDescription] = useState(house.description);
@@ -31,6 +32,7 @@ function EditHouse() {
         // if response is ok, takes use back to houselist page
         history.push("/");
       } else {
+        // if there was an input error, the error messages will be set into state
         r.json().then((err) => setErrors(err.errors));
       }
     });

@@ -17,8 +17,8 @@ function App() {
   const isDarkTheme = theme === "dark";
   const toggleTheme = () => setTheme(isDarkTheme ? "light" : "dark");
 
+  // 	Use effect on load fetches info from backend and sets that user info into state
   useEffect(() => {
-    // auto-login
     // .ok Boolean stating whether the response was successful (status in the range 200-299) or not
     fetch("/me").then((r) => {
       if (r.ok) {
@@ -26,15 +26,16 @@ function App() {
       }
     });
   }, []);
-  // returns false and keeps the user logged in, or else would take user to login screen
+  // if bad info takes to log in screen
   if (!user) return <Login onLogin={setUser} />;
 
   return (
     <Wrapper>
+      {/* dark button elements */}
       <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
         <>
           <GlobalStyles />
-          <NavBar user={user} setUser={setUser} />
+          <NavBar setUser={setUser} />
           <DarkButton>
             <DarkThemeButton onClick={toggleTheme}>
               {isDarkTheme ? (
@@ -48,7 +49,7 @@ function App() {
               )}
             </DarkThemeButton>{" "}
           </DarkButton>
-          <h3>hello, {user.username} </h3>{" "}
+          <h3>hello, {user.username} </h3> {/* react router elements */}
           <main>
             <Switch>
               <Route exact path="/new">

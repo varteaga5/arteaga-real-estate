@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles";
 
+// navbar component receives setUser from App.js
 function NavBar({ setUser }) {
+  // helper state for functionality of Hamburger style component
   const [isOpen, setIsOpen] = useState(false);
+  // onClick function that handles the log out by deleting the session in the backend and sets user to null
   function handleLogout() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
@@ -42,7 +45,7 @@ function NavBar({ setUser }) {
     </Wrapper>
   );
 }
-
+// @media a css conditional that checks if a condition is true then proceeds to the next block
 const Hamburger = styled.div`
   display: none;
   flex-direction: column;
@@ -114,7 +117,3 @@ const Nav = styled.nav`
 `;
 
 export default NavBar;
-
-// wrapper
-// align-items: center;
-// padding: 8px;

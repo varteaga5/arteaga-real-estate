@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
 
+// this component receives onLogin from Login.js, which receives it from App.js
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [wants, setWants] = useState("");
-  const [errors, setErrors] = useState([]);
+  // helper state for functionality of the errors to display
+  const [inputErrors, setInputErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // onSubmit function that handles the submission of form by making a post request
   function handleSubmit(e) {
     e.preventDefault();
-    setErrors([]);
+    setInputErrors([]);
     setIsLoading(true);
     fetch("/signup", {
       method: "POST",
@@ -25,11 +28,14 @@ function SignUpForm({ onLogin }) {
         wants,
       }),
     }).then((r) => {
+      // sets isLoading to false so the correct text renders in the button
+      // if there was an input error, the error messages will be set into state
       setIsLoading(false);
+      console.log("this is r", r);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => setInputErrors(err.errors));
       }
     });
   }
@@ -80,7 +86,7 @@ function SignUpForm({ onLogin }) {
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>
       <FormField>
-        {errors.map((err) => (
+        {inputErrors.map((err) => (
           <Error key={err}>{err}</Error>
         ))}
       </FormField>

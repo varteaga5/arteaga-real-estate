@@ -6,6 +6,7 @@ import { Box, Button } from "../styles";
 
 function HouseList() {
   const [usersHouses, setUserHouses] = useState(null);
+  // on page load sets state from fetch to UsersHouses
   useEffect(() => {
     fetch("/showhouses")
       .then((r) => r.json())
@@ -22,6 +23,7 @@ function HouseList() {
 
   return (
     <Wrapper>
+      {/* makes sure that usersHouses is valid, because can possibly render before useEffect has ran */}
       {usersHouses && usersHouses.houses.length > 0 ? (
         usersHouses.houses.map((house) => (
           <House key={house.id}>
@@ -29,6 +31,7 @@ function HouseList() {
               <h2>{house.address}</h2>
               <ReactMarkdown>{house.description}</ReactMarkdown>
               <Button>
+                {/* in this Link element state is being defined that will be passed to EditHouse.js */}
                 <Link
                   style={{ color: "white", textDecoration: "none" }}
                   to={{
