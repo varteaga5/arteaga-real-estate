@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
 
-// this component receives onLogin from Login.js, which receives it from App.js
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [wants, setWants] = useState("");
-  // helper state for functionality of the errors to display
   const [inputErrors, setInputErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // onSubmit function that handles the submission of form by making a post request
   function handleSubmit(e) {
     e.preventDefault();
     setInputErrors([]);
@@ -28,10 +25,7 @@ function SignUpForm({ onLogin }) {
         wants,
       }),
     }).then((r) => {
-      // sets isLoading to false so the correct text renders in the button
-      // if there was an input error, the error messages will be set into state
       setIsLoading(false);
-      console.log("this is r", r);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
       } else {

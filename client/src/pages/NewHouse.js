@@ -35,7 +35,6 @@ big back yard
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        // if response is ok, takes use back to houselist page
         history.push("/");
       } else {
         r.json().then((err) => setErrors(err.errors));
