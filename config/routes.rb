@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # namespace :api do
 
+  get "/housesQuery/:query", to: "houses#search"
+
   resources :houses
 
   post "/signup", to: "users#create"
@@ -14,3 +16,6 @@ Rails.application.routes.draw do
   
 end
 
+# change part of url
+
+# keeping sep of concerns

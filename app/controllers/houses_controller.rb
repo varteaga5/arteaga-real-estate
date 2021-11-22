@@ -1,5 +1,10 @@
 class HousesController < ApplicationController
 
+    def search
+        search = @current_user.houses.query(params[:query])
+        render json: search
+    end
+    
     def index
         render_houses
     end

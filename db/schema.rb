@@ -34,3 +34,4 @@ ActiveRecord::Schema.define(version: 2021_10_24_161913) do
 
   add_foreign_key "houses", "users"
 end
+
