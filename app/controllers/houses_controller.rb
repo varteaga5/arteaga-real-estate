@@ -1,30 +1,38 @@
 class HousesController < ApplicationController
 
-    def create_house
-        house = @current_user.houses.create(house_params)
-        render json: house, status: :created
+    def index
+        render_houses
     end
 
-    def show_houses
-        render json: @current_user
+    def create
+        new_house = @current_user.houses.create(house_params)
+        render json: new_house, status: :created
     end
-    
-    def update_house
-        house = House.find_by(id: params[:id])
+
+    def update
+        house = find_house
         house.update(house_params)
-        render json: @current_user
+        render_houses
     end
     
-    def delete_house
-        house = House.find_by(id: params[:id])
+    def destroy
+        house = find_house
         house.destroy
-        render json: @current_user
+        render_houses
     end
     
     private
     
     def house_params
         params.permit(:address, :description)
+    end
+    
+    def find_house
+        @house = House.find_by(id: params[:id])
+    end
+    
+    def render_houses
+        render json: @current_user.houses
     end
     
 end

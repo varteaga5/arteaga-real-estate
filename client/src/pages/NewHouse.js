@@ -23,7 +23,7 @@ big back yard
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/createhouse", {
+    fetch("/houses", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

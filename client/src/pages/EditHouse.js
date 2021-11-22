@@ -17,7 +17,7 @@ function EditHouse() {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/showhouses/" + house.id, {
+    fetch("/houses/" + house.id, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

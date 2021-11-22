@@ -6,14 +6,15 @@ import { Box, Button } from "../styles";
 
 function HouseList() {
   const [usersHouses, setUserHouses] = useState(null);
+
   useEffect(() => {
-    fetch("/showhouses")
+    fetch("/houses")
       .then((r) => r.json())
       .then((data) => setUserHouses(data));
   }, []);
 
   function handleDelete(deleteHouse) {
-    fetch("/showhouses/houses/" + deleteHouse.target.id, {
+    fetch("/houses/" + deleteHouse.target.id, {
       method: "DELETE",
     })
       .then((r) => r.json())
@@ -22,8 +23,8 @@ function HouseList() {
 
   return (
     <Wrapper>
-      {usersHouses && usersHouses.houses.length > 0 ? (
-        usersHouses.houses.map((house) => (
+      {usersHouses && usersHouses.length > 0 ? (
+        usersHouses.map((house) => (
           <House key={house.id}>
             <Box>
               <h2>{house.address}</h2>
